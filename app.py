@@ -18,7 +18,38 @@ queues = servicebus_client.queues.list_by_namespace(resource_group_name, namespa
 
 topics = servicebus_client.topics.list_by_namespace(resource_group_name, namespace)
 
-def get_maxsize(resource_id):
+resources = []
+
+for queue in queues:
+    queue_name = queue.name
+    max_size_bytes = queue.max_szie_in_megabytes * 1024 * 1024
+    resource_id = (
+        f'/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}'
+        f'/providers/Microsoft.ServiceBus/namespaces/{namespace}/queues/{queue_name}'
+    )
+    resources.append({
+        'name': queue_name,
+        'type': 'queue',
+        'resource_id': resource_id,
+        'max_size': max_size_bytes
+    })
+
+for topic in topics:
+    topic_name = topic.name
+    max_size_bytes = topic.max_size_in_megabytes * 1024 * 1024  # Convert to bytes
+    resource_id = (
+        f'/subscriptions/{subscription_id}/resourceGroups/{resource_group_name}'
+        f'/providers/Microsoft.ServiceBus/namespaces/{namespace}/topics/{topic_name}'
+    )
+    resources.append({
+        'name': topic_name,
+        'type': 'topic',
+        'resource_id': resource_id,
+        'max_size': max_size_bytes
+    })
+
+
+def get_resource_size(resource_id):
     metrics_data = metrics_client.query_resource(
         resource_id,
         metric_names=['Size'],
@@ -36,6 +67,28 @@ def get_maxsize(resource_id):
                 return current_size
     return None
 
+def get_resources_exceeding_threshold():
+    response = []
+    for resource in resources:
+        name = resource['name']
+        res_type = resource['type']
+        res_id = resource['resource_id']
+        max_size = resource['max_size']
+
+    current_size = get_resource_size(res_id)
+
+    if current_size is not None:
+        usage_percentage = (current_size / max_size) * 100
+        if usage_percentage > threshold_percentage:
+            response.append({
+                'name': name,
+                'type': res_type,
+                'usage_percentage': usage_percentage
+            })
+    else:
+        print(f'Warning: Could not get current size for {res_type} "{name}".')
+
+    return response
 
 
 
