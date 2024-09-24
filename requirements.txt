@@ -1,0 +1,6 @@
+azure-common==1.1.28
+azure-core==1.31.0
+azure-identity==1.18.0
+azure-mgmt-core==1.4.0
+azure-mgmt-servicebus==8.2.0
+azure-monitor-query==1.4.0
