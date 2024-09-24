@@ -67,7 +67,7 @@ def get_resource_size(resource_id):
                 return current_size
     return None
 
-def get_resources_exceeding_threshold():
+def get_resources_exceeding_threshold(resources, threshold_percentage):
     response = []
     for resource in resources:
         name = resource['name']
@@ -90,5 +90,15 @@ def get_resources_exceeding_threshold():
 
     return response
 
+
+while True:
+    exceeding_resources = get_resources_exceeding_threshold(resources, threshold_percentage)
+    for resource in exceeding_resources:
+        name = resource['name']
+        resource_type = resource['type']
+        usage_percentage = resource['user_percentage']
+        print(f'Warning: {resource_type.capitalize()} "{name}" is at {usage_percentage:.2f}% of its maximum size.')
+
+    time.sleep(3600)
 
 
