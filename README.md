@@ -42,16 +42,16 @@ The script will begin monitoring your Azure ServiceBus resources and display usa
 
 ## Running with Docker
 
-You can also run this project inside a Docker container.
+You can use the pre-built Docker image from Docker Hub, eliminating the need to build the Dockerfile manually.
 
-### 1. Build the Docker image
+### 1. Pull the Docker Image
 ```bash
-docker build -t azure-servicebus-monitor .
+docker pull imaun/azure-servicebus-monitor:latest
 ```
 
 ### 2. Run the Docker Container
 ```bash
-docker run --env-file .env azure-servicebus-monitor
+docker run --env-file .env imaun/azure-servicebus-monitor:latest
 ```
 This will start the container and run the monitoring script in a lightweight Python environment.
 
