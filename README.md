@@ -26,7 +26,10 @@ You can install the required Python dependencies using:
 pip install -r requirements.txt
 ```
 
-### 3. Define variables
+### 3. 🔧 Configuration
+This project uses environment variables for configuration.  
+To get started:
+
 Create a `.env` file in the project root and define the following environment variables:
 
 ```bash
@@ -36,6 +39,13 @@ SERVICEBUS_NAMESPACE=<your-servicebus-namespace>
 THRESHOLD_PERCENTAGE=<usage-threshold-percentage>  # e.g., 80 for 80%
 TIMER_INTERVAL=<time-interval-in-seconds>  # e.g., 60 for 60 seconds
 ```
+
+Or you can use the example file:
+```bash
+   cp .env.example .env
+```
+Then open `.env` and edit the contents with your own values.
+
 
 ### 4. Run the script
 ```bash
