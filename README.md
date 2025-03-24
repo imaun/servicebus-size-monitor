@@ -14,13 +14,13 @@ This Python script monitors the maximum sizes of Azure ServiceBus Topics and Que
 - Azure CLI installed and authenticated.
 
 ## Getting Started
-### 1. Clons the repository
+### 1. 🧬 Clons the repository
 ```bash
 git clone https://github.com/yourusername/azure-servicebus-monitor.git
 cd azure-servicebus-monitor
 ```
 
-### 2. Install Dependencies
+### 2. 📦 Install Dependencies
 You can install the required Python dependencies using:
 ```bash
 pip install -r requirements.txt
@@ -47,35 +47,35 @@ Or you can use the example file:
 Then open `.env` and edit the contents with your own values.
 
 
-### 4. Run the script
+### 4. 🚀 Run the script
 ```bash
 python app.py
 ```
 The script will begin monitoring your Azure ServiceBus resources and display usage information for each Queue and Topic.
 
-## Running with Docker
+## 🐳 Running with Docker
 
 You can use the pre-built Docker image from Docker Hub, eliminating the need to build the Dockerfile manually.
 
-### 1. Pull the Docker Image
+### 1. 📥 Pull the Docker Image
 ```bash
 docker pull imaun/azure-servicebus-monitor:latest
 ```
 
-### 2. Run the Docker Container
+### 2. 🚢 Run the Docker Container
 ```bash
 docker run --env-file .env imaun/azure-servicebus-monitor:latest
 ```
 This will start the container and run the monitoring script in a lightweight Python environment.
 
-## How It Works
+## 🧠 How It Works
 The script uses the Azure SDK to fetch information about all Queues and Topics in a given ServiceBus namespace. It compares their current active message size against the maximum configured size and calculates the usage percentage. If the usage exceeds the pre-configured threshold, a warning is printed to the terminal.
 
-## Customization
+## 🧩 Customization
 
 - **Threshold Percentage**: Define how close to the resource's maximum size you want to be alerted (e.g., 80%).
 - **Timer Interval**: Set how often the script checks the resource sizes.
 
-## License
+## 📄 License
 This project is licensed under the GPL-3.0 License.
 
