@@ -21,6 +21,12 @@ cd azure-servicebus-monitor
 ```
 
 ### 2. Install Dependencies
+You can install the required Python dependencies using:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Define variables
 Create a `.env` file in the project root and define the following environment variables:
 
 ```bash
@@ -30,11 +36,8 @@ SERVICEBUS_NAMESPACE=<your-servicebus-namespace>
 THRESHOLD_PERCENTAGE=<usage-threshold-percentage>  # e.g., 80 for 80%
 TIMER_INTERVAL=<time-interval-in-seconds>  # e.g., 60 for 60 seconds
 ```
-You can install the required Python dependencies using:
-```bash
-pip install -r requirements.txt
-```
-### 3. Run the script
+
+### 4. Run the script
 ```bash
 python app.py
 ```
